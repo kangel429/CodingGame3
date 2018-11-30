@@ -6,6 +6,8 @@ ty folders & files
 
 ##############################
 # Source Files
+*.psd
+*.max
 ##############################
 # Package files
 *.7z
