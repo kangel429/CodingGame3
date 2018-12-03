@@ -74,6 +74,7 @@ namespace DynamicCSharp.Demo
 
             CodeUI.onCompileClicked += (CodeUI ui) =>
             {
+                ctrManagerObject.mouseDrag = false;
                 // Try to run the script
                 RunTankScript(ui.codeEditor.text);
             };
@@ -87,7 +88,7 @@ namespace DynamicCSharp.Demo
             {
                 Debug.Log("mouse drag1111111111");
                 startPosition = new Vector2(tankObject.transform.position.x,-3);
-                ctrManagerObject.mouseDrag = false;
+                //ctrManagerObject.mouseDrag = false;
             }
 
 
