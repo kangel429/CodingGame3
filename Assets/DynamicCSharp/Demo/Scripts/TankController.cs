@@ -86,7 +86,7 @@ namespace DynamicCSharp.Demo
             Collider collider = collision.collider;
 
             // Check for crashed into walls
-            if (collider.name == "DamagedWall" || collider.name == "Wall")
+            if (collider.name == "DamagedWall(Clone)" || collider.name == "Wall")
                 crash = true;
             if (collider.tag == "Goal" ){
 

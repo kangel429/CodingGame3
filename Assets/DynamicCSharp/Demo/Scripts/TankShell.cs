@@ -57,10 +57,10 @@ namespace DynamicCSharp.Demo
         {
             Collider collider = collision.collider;
 
-            if (collider.name == "DamagedWall")
+            if (collider.name == "DamagedWall(Clone)")
             {
                 // Destroy the hit wall
-                Destroy(collider.gameObject);
+                collider.gameObject.SetActive(false);
 
                 // The bullet should be destroyed
                 hit = true;
