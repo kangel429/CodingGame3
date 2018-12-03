@@ -6,6 +6,8 @@ public class CtrManagerObject : MonoBehaviour {
 
     private Vector3 initMousePos;
 
+    public bool mouseDrag;
+
     //처음마우스 클릭시
     void OnMouseDown()
     {
@@ -13,11 +15,12 @@ public class CtrManagerObject : MonoBehaviour {
         initMousePos = Input.mousePosition;
         initMousePos.z = 10;
         initMousePos = Camera.main.ScreenToWorldPoint(initMousePos);
-        Debug.Log("mouse Down : " + initMousePos);
+        //Debug.Log("mouse Down : " + initMousePos);
     }
     //마우스 드래그시
     void OnMouseDrag()
     {
+        mouseDrag = true;
         Vector3 worldPoint = Input.mousePosition;
         worldPoint.z = 10;
         worldPoint = Camera.main.ScreenToWorldPoint(worldPoint);
@@ -36,7 +39,7 @@ public class CtrManagerObject : MonoBehaviour {
                         transform.position.z);
 
 
-         Debug.Log("mouse drag" + diffPos);
+         //Debug.Log("mouse drag" + diffPos);
     }
 
 

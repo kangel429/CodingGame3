@@ -31,7 +31,7 @@ namespace DynamicCSharp.Demo
         public Image buttonPlayimg;
 
 
-       
+        CtrManagerObject ctrManagerObject;
 
 
         // Methods
@@ -42,13 +42,14 @@ namespace DynamicCSharp.Demo
         {
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 30;
-            //if(ScriptDomain.Active== null){
+            ctrManagerObject = tankObject.GetComponent<CtrManagerObject>();
+        //if(ScriptDomain.Active== null){
 
-        //    Debug.Log("333333333333");
-        //}
+            //    Debug.Log("333333333333");
+            //}
 
-        // Create our script domain
-        domain = ScriptDomain.CreateDomain("ScriptDomain", true);
+            // Create our script domain
+            domain = ScriptDomain.CreateDomain("ScriptDomain", true);
 
             // Find start positions
             startPosition = tankObject.transform.position;
@@ -78,6 +79,20 @@ namespace DynamicCSharp.Demo
             };
 
         }
+        //bool firstStart = true;
+
+        private void Update()
+        {
+            if(ctrManagerObject.mouseDrag)
+            {
+                Debug.Log("mouse drag1111111111");
+                startPosition = new Vector2(tankObject.transform.position.x,-3);
+                ctrManagerObject.mouseDrag = false;
+            }
+
+
+        }
+
 
         /// <summary>
         /// Resets the demo game and runs the tank with the specified C# code controlling it.

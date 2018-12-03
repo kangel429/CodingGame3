@@ -19,7 +19,8 @@ class Tank : TankController
              Shoot(0);
             MoveForward(1);
             RotateCounterClockwise(-90);
-            if(i==1)Shoot(0);
+            //if(i==1)Shoot(0);
+            Shoot(0);
             MoveForward(1);
             RotateCounterClockwise(90);
             
