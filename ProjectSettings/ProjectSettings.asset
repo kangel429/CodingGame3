@@ -654,9 +654,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: a85c708f-e2eb-4ad5-b296-9cf54d4c4865
-  projectName: CodingGame
-  organizationId: kangel4299
+  cloudProjectId: 5a5e53c2-e4d2-46ba-856c-40930a8543d7
+  projectName: CodingGame (1)
+  organizationId: wldnt18
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
