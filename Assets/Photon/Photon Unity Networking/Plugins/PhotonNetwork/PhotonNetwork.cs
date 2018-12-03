@@ -3462,8 +3462,8 @@ public static class PhotonNetwork
         {
 			string _PunResourcesPath = PhotonNetwork.FindPunAssetFolder();
 
-			_PunResourcesPath += "Resources/";
-
+			// _PunResourcesPath += "Resources/";
+            _PunResourcesPath = "Assets/Resources/"; // photon prefab 경로 바꿈
 
 			string serverSettingsAssetPath = _PunResourcesPath+ PhotonNetwork.serverSettingsAssetFile + ".asset";
 			string settingsPath = Path.GetDirectoryName(serverSettingsAssetPath);

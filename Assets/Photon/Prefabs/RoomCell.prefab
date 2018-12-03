@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 222201932649328394}
   - component: {fileID: 114380630541430272}
   - component: {fileID: 114457176126246416}
-  - component: {fileID: 114259636569697516}
+  - component: {fileID: 114607904090866440}
   m_Layer: 5
   m_Name: RoomCell
   m_TagString: Untagged
@@ -182,20 +182,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
---- !u!114 &114259636569697516
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817626954387188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da565cd11ffbe4602bdbf8c1d9036f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: {fileID: 114336394678392904}
-  playerCount: {fileID: 114255494217493948}
-  joinButton: {fileID: 114791491169270098}
 --- !u!114 &114336394678392904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,6 +315,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &114607904090866440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1817626954387188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5075effaae59147a58191a39bd44b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: {fileID: 114336394678392904}
+  playerCount: {fileID: 114255494217493948}
+  joinButton: {fileID: 114791491169270098}
 --- !u!114 &114791491169270098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,6 +522,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -445}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}

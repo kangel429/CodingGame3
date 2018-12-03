@@ -61,7 +61,7 @@ public class PhotonManager : Photon.PunBehaviour {
         // getRooms ();
     }
 
-    public void JoinGame () {
+    public void JoinCreateRoom() {
         
         string roomname = inputRoomName.text;
         if (roomname == "") {
@@ -185,7 +185,7 @@ public class PhotonManager : Photon.PunBehaviour {
     }
 
 
-    public void clickCreateRoom() {
+    public void showRoomPopUp() {
         
         roomPopup.SetActive(true);
 

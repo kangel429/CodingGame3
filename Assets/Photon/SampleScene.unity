@@ -113,6 +113,21 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &52861758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1071923140}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1071923141}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &122645818
 Prefab:
   m_ObjectHideFlags: 0
@@ -541,6 +556,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576306085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114074695523443270, guid: e233d118e20424be487a93632001e390,
+    type: 2}
+  m_PrefabInternal: {fileID: 1084121421}
+  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &657093936
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +853,7 @@ MonoBehaviour:
   join_button: {fileID: 1084121422}
   roomCell: {fileID: 1817626954387188, guid: 315c2fdda8b024f49bbe203d9ea4d528, type: 2}
   listContent: {fileID: 1084121425}
-  noRoomImg: {fileID: 1747162934491954, guid: a667aa4739d4d4da6bafde43e047208c, type: 2}
+  noRoomImg: {fileID: 1364889292}
   inputRoomName: {fileID: 1084121423}
   roomPopup: {fileID: 1084121424}
 --- !u!4 &930177902
@@ -1091,10 +1112,20 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450a3aa1c96b94b299d2296cd02647f9, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1071923141 stripped
+--- !u!4 &1071923141
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 1071923140}
+  m_GameObject: {fileID: 52861758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1164353510}
+  m_Father: {fileID: 341235552}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1084121421
 Prefab:
   m_ObjectHideFlags: 0
@@ -1218,11 +1249,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 930177900}
+      objectReference: {fileID: 930177901}
     - target: {fileID: 114733796022359676, guid: e233d118e20424be487a93632001e390,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: showRoomPopUp
       objectReference: {fileID: 0}
     - target: {fileID: 224838061608441960, guid: e233d118e20424be487a93632001e390,
         type: 2}
@@ -1249,6 +1280,55 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224564809977465974, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 261
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748033692394428, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 930177901}
+    - target: {fileID: 114748033692394428, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: addCellButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114625777170570910, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2026627880}
+    - target: {fileID: 114625777170570910, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: checkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271830467167210, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 930177901}
+    - target: {fileID: 114271830467167210, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: JoinCreateRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 114958438520956754, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 930177901}
+    - target: {fileID: 114958438520956754, guid: e233d118e20424be487a93632001e390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: hideRoomPopUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706988199126802, guid: e233d118e20424be487a93632001e390, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e233d118e20424be487a93632001e390, type: 2}
   m_IsPrefabAsset: 0
@@ -1272,6 +1352,54 @@ GameObject:
 --- !u!224 &1084121425 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224263363908082498, guid: e233d118e20424be487a93632001e390,
+    type: 2}
+  m_PrefabInternal: {fileID: 1084121421}
+--- !u!1 &1164353509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1071923140}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164353510}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164353510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1071923140}
+  m_GameObject: {fileID: 1164353509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1071923141}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1291579761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1875946516}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1875946517}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1364889292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1706988199126802, guid: e233d118e20424be487a93632001e390,
     type: 2}
   m_PrefabInternal: {fileID: 1084121421}
 --- !u!1 &1401670010
@@ -1350,7 +1478,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2026627880}
+      - m_Target: {fileID: 0}
         m_MethodName: checkButton
         m_Mode: 1
         m_Arguments:
@@ -2037,10 +2165,20 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51681702391747eba868a9535d61ee3, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1875946517 stripped
+--- !u!4 &1875946517
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 1875946516}
+  m_GameObject: {fileID: 1291579761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2091655120}
+  m_Father: {fileID: 2066532693}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876531305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,10 +2418,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026627879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e92557203e98d4c23ae1133e8e364347, type: 3}
+  m_Script: {fileID: 11500000, guid: bf035b6a46d9443c7b9883b4e8a1f356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickField: {fileID: 1455268342}
+  nickField: {fileID: 576306085}
 --- !u!4 &2026627881
 Transform:
   m_ObjectHideFlags: 0
@@ -2381,3 +2519,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &2091655119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1875946516}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2091655120}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2091655120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1875946516}
+  m_GameObject: {fileID: 2091655119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1875946517}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
