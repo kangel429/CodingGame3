@@ -6,22 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class GameM : Photon.PunBehaviour {
 
-    private WaitForSeconds m_StartWait;     
-    private WaitForSeconds m_EndWait;     
-	 public float m_StartDelay = 3f;         
-    public float m_EndDelay = 3f;
+    // private WaitForSeconds m_StartWait;     
+    // private WaitForSeconds m_EndWait;     
+	//  public float m_StartDelay = 3f;         
+    // public float m_EndDelay = 3f;
 	// public TankManager[] m_Tanks;         
-	public TextMeshPro[] tmpRoomName;
-	public Material red_material;
+	// public TextMeshPro[] tmpRoomName;
+	// public Material red_material;
+
+	public GameObject camera1, camera2;
 	private void Start()
 	{
+
+
 		// Create the delays so they only have to be made once.
-		m_StartWait = new WaitForSeconds(m_StartDelay);
-		m_EndWait = new WaitForSeconds(m_EndDelay);
-		tmpRoomName[0].text = PhotonNetwork.room.Name;
-		tmpRoomName[1].text = PhotonNetwork.room.Name;
-		tmpRoomName[2].text = PhotonNetwork.room.Name;
-		tmpRoomName[3].text = PhotonNetwork.room.Name;
+		// m_StartWait = new WaitForSeconds(m_StartDelay);
+		// m_EndWait = new WaitForSeconds(m_EndDelay);
+		// tmpRoomName[0].text = PhotonNetwork.room.Name;
+		// tmpRoomName[1].text = PhotonNetwork.room.Name;
+		// tmpRoomName[2].text = PhotonNetwork.room.Name;
+		// tmpRoomName[3].text = PhotonNetwork.room.Name;
 		
 		// if (!PhotonNetwork.inRoom)
 		// 	return;
@@ -34,6 +38,29 @@ public class GameM : Photon.PunBehaviour {
 		// }
 	}
 
+	public void instantiatePlayer(Vector3 pos) {
+
+		if (!PhotonNetwork.inRoom) return;
+
+        if (PhotonNetwork.isMasterClient) {
+
+			camera1.SetActive(true);
+            Debug.Log ("나는 마스터 클라이언트 ");
+         	GameObject master = PhotonNetwork.Instantiate ("animal",
+                pos, //TestCube
+                Quaternion.identity, 0);
+			// Transform cube_tr = master.transform.GetChild(2);
+			// cube_tr.GetComponent<MeshRenderer>().material = red_material;
+        } else {
+
+			camera2.SetActive(true);
+            Debug.Log ("나는 그냥 클라이언트 ");
+            PhotonNetwork.Instantiate ("animal",
+                pos,
+                Quaternion.identity, 0);
+        }
+	}
+
 	void OnLevelWasLoaded (int levelNumber) {
         // Photon 룸 안이 아니라면 네트워크에 문제가 있을지도..
 
@@ -43,18 +70,23 @@ public class GameM : Photon.PunBehaviour {
 		Debug.Log("levelNumber = " + levelNumber );
         Debug.Log("player name = " + PhotonNetwork.playerName );
         Debug.Log("player AuthValues = " + PhotonNetwork.AuthValues );
+
         if (PhotonNetwork.isMasterClient) {
+
+			camera1.SetActive(true);
             Debug.Log ("나는 마스터 클라이언트 ");
-         	GameObject master = PhotonNetwork.Instantiate ("Player",
-                new Vector3 (0, 0.5f, 0), //TestCube
-                Quaternion.identity, 0);
+         	// GameObject master = PhotonNetwork.Instantiate ("Player",
+            //     initPosition, //TestCube
+            //     Quaternion.identity, 0);
 			// Transform cube_tr = master.transform.GetChild(2);
 			// cube_tr.GetComponent<MeshRenderer>().material = red_material;
         } else {
+
+			camera2.SetActive(true);
             Debug.Log ("나는 그냥 클라이언트 ");
-            PhotonNetwork.Instantiate ("Player",
-                new Vector3 (0, 0.5f, 0),
-                Quaternion.identity, 0);
+            // PhotonNetwork.Instantiate ("Player",
+            //     initPosition,
+            //     Quaternion.identity, 0);
         }
 
     }
@@ -79,6 +111,11 @@ public class GameM : Photon.PunBehaviour {
         // back to main menu
         SceneManager.LoadScene("SampleScene");
     }
+
+	override public void OnPhotonPlayerConnected(PhotonPlayer newPlayer) {
+		Debug.Log(" 원격 사용자 접속 ! ");
+	}
+
 	
 	// create one Tank, set its player number and references needed for control.
 	// private void SpawnMasterTank()

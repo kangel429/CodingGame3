@@ -68,7 +68,7 @@ public class PhotonManager : Photon.PunBehaviour {
             return;
         }
         RoomOptions options = new RoomOptions ();
-        options.MaxPlayers = 4;
+        options.MaxPlayers = 2;
         PhotonNetwork.JoinOrCreateRoom (roomname, options, lobby);
 
         // PhotonNetwork.JoinLobby()
@@ -91,7 +91,8 @@ public class PhotonManager : Photon.PunBehaviour {
         //    PhotonNetwork.LoadLevel("GameRoomScene");
         // }
 
-        PhotonNetwork.LoadLevel ("GameRoomScene");
+        // PhotonNetwork.LoadLevel ("GameRoomScene");
+        PhotonNetwork.LoadLevel ("MultiBattle");
     }
 
     // void OnLevelWasLoaded (int levelNumber) {
