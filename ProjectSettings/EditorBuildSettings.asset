@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Photon/GameRoomScene.unity
     guid: 134e4b52606bb4328a08391340713af4
+  - enabled: 1
+    path: Assets/Photon/MultiBattle.unity
+    guid: a6ca8e6ccf6ad489cba4b01a28f5c931
   m_configObjects: {}
