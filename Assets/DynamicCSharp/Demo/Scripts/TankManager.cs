@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using System.IO;
 namespace DynamicCSharp.Demo
 {
     /// <summary>
@@ -32,7 +32,7 @@ namespace DynamicCSharp.Demo
 
 
         CtrManagerObject ctrManagerObject;
-
+        
 
         // Methods
         /// <summary>
@@ -164,5 +164,45 @@ namespace DynamicCSharp.Demo
             tankObject.transform.rotation = startRotation;
 
         }
+
+        public Text script;
+
+
+        public void SaveTextScript(){
+
+            //File.WriteAllText(savePath,script.text);
+            WriteData(script.text);
+            Debug.Log("저장");
+            //if (File.Exists(fileName))
+            //{
+            //    Debug.Log(fileName + " already exists.");
+            //    return;
+            //}
+            //var sr = File.CreateText(fileName);
+            //sr.WriteLine(script.text);
+           
+            //sr.Close();
+            ////////
+
+         }
+        string source = ""; //읽어낸 텍스트 할당받는 변수
+
+        void WriteData(string strData)
+        {
+            // FileMode.Create는 덮어쓰기.
+            FileStream f = new FileStream(Application.dataPath + "/DynamicCSharp" + "/" + "/Demo" + "/" + "/Resources" + "/" + "Script.txt", FileMode.Create, FileAccess.Write);
+
+            StreamWriter writer = new StreamWriter(f, System.Text.Encoding.Unicode);
+            writer.WriteLine(strData);
+            writer.Close();
+        }
+
+        public void ReadData()
+        {
+            StreamReader sr = new StreamReader(Application.dataPath + "/DynamicCSharp" + "/" + "/Demo" + "/" + "/Resources" + "/" + "Script.txt");
+            source = sr.ReadLine();
+            sr.Close();
+        }
+
     }
 }
