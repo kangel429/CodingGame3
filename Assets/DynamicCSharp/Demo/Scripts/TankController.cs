@@ -88,8 +88,8 @@ namespace DynamicCSharp.Demo
             // Check for crashed into walls
             if (collider.name == "DamagedWall(Clone)" || collider.name == "Wall")
                 crash = true;
-            if (collider.tag == "Goal" ){
-
+            if (collider.name == "Goal" ){
+                Debug.Log("Goal11111");
                 SceneManager.LoadScene(nextStage);
             }
 

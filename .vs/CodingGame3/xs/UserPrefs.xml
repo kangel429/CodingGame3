@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{8173BDB9-6C46-CA43-FB6B-5F20327BB7FC}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DynamicCSharp/Demo/Scripts/TankManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DynamicCSharp/Demo/Resources/Script.txt">
     <Files>
-      <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankManager.cs" Line="191" Column="22" />
-      <File FileName="Assets/CtrManagerObject.cs" Line="20" Column="31" />
-      <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankController.cs" Line="212" Column="37" />
+      <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankManager.cs" Line="77" Column="54" />
+      <File FileName="Assets/CtrManagerObject.cs" Line="13" Column="21" />
+      <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankController.cs" Line="217" Column="37" />
       <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankShell.cs" Line="63" Column="48" />
       <File FileName="Assets/DynamicCSharp/Demo/Scripts/TankManagerAsync.cs" Line="91" Column="36" />
       <File FileName="Assets/DynamicCSharp/Demo/Resources/BlankTemplate.txt" Line="24" Column="28" />
       <File FileName="Assets/PlaybuttonChange.cs" Line="1" Column="1" />
       <File FileName="Assets/DynamicCSharp/Demo/Scripts/CodeUI.cs" Line="96" Column="33" />
-      <File FileName="Assets/MapManager.cs" Line="46" Column="28" />
+      <File FileName="Assets/MapManager.cs" Line="5" Column="24" />
       <File FileName="Assets/DynamicCSharp/Demo/Resources/ExampleTemplate.txt" Line="1" Column="1" />
+      <File FileName="Assets/DynamicCSharp/Demo/Resources/Script.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

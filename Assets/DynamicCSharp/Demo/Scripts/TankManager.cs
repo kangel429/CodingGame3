@@ -42,7 +42,7 @@ namespace DynamicCSharp.Demo
         {
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 30;
-            ctrManagerObject = tankObject.GetComponent<CtrManagerObject>();
+            //ctrManagerObject = tankObject.GetComponent<CtrManagerObject>();
         //if(ScriptDomain.Active== null){
 
             //    Debug.Log("333333333333");
@@ -74,7 +74,7 @@ namespace DynamicCSharp.Demo
 
             CodeUI.onCompileClicked += (CodeUI ui) =>
             {
-                ctrManagerObject.mouseDrag = false;
+                //ctrManagerObject.mouseDrag = false;
                 // Try to run the script
                 RunTankScript(ui.codeEditor.text);
             };
@@ -84,12 +84,12 @@ namespace DynamicCSharp.Demo
 
         private void Update()
         {
-            if(ctrManagerObject.mouseDrag)
-            {
-                Debug.Log("mouse drag1111111111");
-                startPosition = new Vector2(tankObject.transform.position.x,-3);
-                //ctrManagerObject.mouseDrag = false;
-            }
+            //if(ctrManagerObject.mouseDrag)
+            //{
+            //    Debug.Log("mouse drag1111111111");
+            //    startPosition = new Vector2(3,-3);
+            //    //ctrManagerObject.mouseDrag = false;
+            //}
 
 
         }
