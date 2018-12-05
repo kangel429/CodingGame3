@@ -15,6 +15,7 @@ public class Posinfo : MonoBehaviour, IPointerEnterHandler {
 
 		gameManager.playerObj.transform.position = instantiatePos;
 		gameManager.hideButton();
+		gameManager.selectPos();
 		// gameManager.instantiatePlayer(instantiatePos);
 
 		// gameManager.initPosition = instantiatePos;
