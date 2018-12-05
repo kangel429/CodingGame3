@@ -139,8 +139,12 @@ namespace DynamicCSharp.Compiler
         /// </summary>
         public void PrintErrors()
         {
+            //UnityEngine.GameObject.Find("ErrorExplain").SetActive(false);
+            UnityEngine.GameObject errorOBJ = UnityEngine.GameObject.Find("ErrorExplain");
             foreach (string error in errors){
-                UnityEngine.Debug.LogError(error);
+                UnityEngine.Debug.Log("scriptCompiler : "+error);
+
+                errorOBJ.GetComponent<UnityEngine.UI.Text>().text = "scriptCompiler : " + error;
 
             }
                 
@@ -236,6 +240,7 @@ namespace DynamicCSharp.Compiler
                    
                     if(err.line!=0){
                         UnityEngine.Debug.Log("eeeeeeee" + err.line);
+                        UnityEngine.GameObject.Find("ErrorShowLine").GetComponent<UnityEngine.UI.Image>().color = new UnityEngine.Color(1,0,0,0.3f);
                         UnityEngine.GameObject.Find("ErrorShowLine").GetComponent<UnityEngine.RectTransform>().localPosition = new UnityEngine.Vector3(0, 481f - (16f * (err.line-2)), 0);
                     }
                     // Generate an error

@@ -81,14 +81,14 @@ namespace DynamicCSharp.Demo
         /// Called by Unity.
         /// </summary>
         /// <param name="collision">The collider that was hit</param>
-        public void OnCollisionEnter3D(Collision collision)
+        public void OnCollisionEnter(Collision collision)
         {
             Collider collider = collision.collider;
 
             // Check for crashed into walls
             if (collider.name == "DamagedWall(Clone)" || collider.name == "Wall")
                 crash = true;
-            if (collider.name == "Goal" ){
+            if (collider.tag == "Goal" ){
                 Debug.Log("Goal11111");
                 SceneManager.LoadScene(nextStage);
             }
@@ -98,6 +98,8 @@ namespace DynamicCSharp.Demo
                 crashEnemy = true;
 
 
+            }else{
+                crashEnemy = false;
             }
         }
 
@@ -123,6 +125,7 @@ namespace DynamicCSharp.Demo
         public void MoveForward(float amount = 1)
         {
             // Add a move forward task
+            if (TellCrash()) Debug.Log("cccccccccccc");
             tankTasks.Enqueue(new TankEvent(TankEventType.Move, amount));
         }
         public void HorizonMoveForward(float amount = 1)

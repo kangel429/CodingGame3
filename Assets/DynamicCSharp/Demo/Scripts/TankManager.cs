@@ -26,7 +26,6 @@ namespace DynamicCSharp.Demo
         /// The tank object that can be controlled via code.
         /// </summary>
         public GameObject tankObject;
-
         public Sprite playBuSprite;
         public Image buttonPlayimg;
 
@@ -40,6 +39,7 @@ namespace DynamicCSharp.Demo
         /// </summary>
         public void Awake()
         {
+            GameObject.Find("ErrorShowLine").GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 30;
             //ctrManagerObject = tankObject.GetComponent<CtrManagerObject>();
@@ -58,7 +58,7 @@ namespace DynamicCSharp.Demo
             // Add listener for new button
             CodeUI.onNewClicked += (CodeUI ui) =>
             {
-                Debug.Log("ddddddddd");
+                //Debug.Log("ddddddddd");
 
 
                 // Load new file
@@ -119,9 +119,12 @@ namespace DynamicCSharp.Demo
 
             if (type == null)
             {
-                Debug.Log("1111"+domain.GetErrorLineValue());
-                Debug.LogError("Compile failed");
+                Debug.Log("Compile failed" + domain.GetErrorLineValue());
+               // Debug.LogError("Compile failed");
                 return;
+            }else{
+                GameObject.Find("ErrorExplain").GetComponent<Text>().text ="";
+                GameObject.Find("ErrorShowLine").GetComponent<Image>().color = new Color(0, 0, 0, 0f);
             }
 
             // Make sure the type inherits from 'TankController'
