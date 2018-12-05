@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class GameM : Photon.PunBehaviour {
 
     // private WaitForSeconds m_StartWait;     
@@ -15,9 +16,47 @@ public class GameM : Photon.PunBehaviour {
 	// public Material red_material;
 
 	public GameObject camera1, camera2;
+	public GameObject playerObj;
+	public GameObject[] buttonArr;
+	// public TextMeshPro roomNameUI, TimeUI;
+	public TextMeshProUGUI roomNameUI, TimeUI;
+	private float sumTime;
+	private float timer = 10f;
 	private void Start()
 	{
 
+		if (!PhotonNetwork.inRoom) return;
+		
+		roomNameUI.text = "Room Name  < " + PhotonNetwork.room.Name + " > ";
+		if (userEmpty) {
+
+			 if (PhotonNetwork.isMasterClient) {
+
+				userEmpty = false;
+				camera1.SetActive(true);
+				Debug.Log ("나는 마스터 클라이언트 ");
+				playerObj = PhotonNetwork.Instantiate ("animal",
+					Vector3.zero, //TestCube
+					Quaternion.identity, 0);
+				// Transform cube_tr = master.transform.GetChild(2);
+				// cube_tr.GetComponent<MeshRenderer>().material = red_material;
+        	} else {
+				
+				userEmpty = false;
+				camera2.SetActive(true);
+				Debug.Log ("나는 그냥 클라이언트 ");
+				playerObj = PhotonNetwork.Instantiate ("animal",
+					Vector3.zero,
+					user2ro,
+					0);
+        	}
+
+		}else {
+
+			// userObj.transform.position = pos;
+		}
+
+		playerObj.SetActive(false);
 
 		// Create the delays so they only have to be made once.
 		// m_StartWait = new WaitForSeconds(m_StartDelay);
@@ -38,28 +77,55 @@ public class GameM : Photon.PunBehaviour {
 		// }
 	}
 
+	void Update()
+	{
+		if (sumTime < 9.99f) {
+
+			sumTime += Time.deltaTime;
+			TimeUI.text = "Time  " + string.Format("{0:N2}" , timer - sumTime);
+		}
+		
+	}
+
+	private GameObject userObj;
+	private bool userEmpty = true;
+	private Quaternion user2ro = Quaternion.Euler(new Vector3(0,180,0));
+
 	public void instantiatePlayer(Vector3 pos) {
 
 		if (!PhotonNetwork.inRoom) return;
+		
+		if (userEmpty) {
 
-        if (PhotonNetwork.isMasterClient) {
+			 if (PhotonNetwork.isMasterClient) {
 
-			camera1.SetActive(true);
-            Debug.Log ("나는 마스터 클라이언트 ");
-         	GameObject master = PhotonNetwork.Instantiate ("animal",
-                pos, //TestCube
-                Quaternion.identity, 0);
-			// Transform cube_tr = master.transform.GetChild(2);
-			// cube_tr.GetComponent<MeshRenderer>().material = red_material;
-        } else {
+				userEmpty = false;
+				camera1.SetActive(true);
+				Debug.Log ("나는 마스터 클라이언트 ");
+				userObj = PhotonNetwork.Instantiate ("animal",
+					pos, //TestCube
+					Quaternion.identity, 0);
+				// Transform cube_tr = master.transform.GetChild(2);
+				// cube_tr.GetComponent<MeshRenderer>().material = red_material;
+        	} else {
+				
+				userEmpty = false;
+				camera2.SetActive(true);
+				Debug.Log ("나는 그냥 클라이언트 ");
+				userObj = PhotonNetwork.Instantiate ("animal",
+					pos,
+					user2ro,
+					0);
+        	}
 
-			camera2.SetActive(true);
-            Debug.Log ("나는 그냥 클라이언트 ");
-            PhotonNetwork.Instantiate ("animal",
-                pos,
-                Quaternion.identity, 0);
-        }
+		}else {
+
+			userObj.transform.position = pos;
+		}
+       
 	}
+
+
 
 	void OnLevelWasLoaded (int levelNumber) {
         // Photon 룸 안이 아니라면 네트워크에 문제가 있을지도..
@@ -90,6 +156,12 @@ public class GameM : Photon.PunBehaviour {
         }
 
     }
+
+	public void hideButton() {
+		for (int i = 0; i < buttonArr.Length; i++ ) {
+			buttonArr[i].SetActive(false);
+		}
+	}
 
 	public void leaveRoomButton() {
 
