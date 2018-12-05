@@ -17,6 +17,7 @@ public class PhotonManager : Photon.PunBehaviour {
 
     public InputField inputRoomName;
     public GameObject roomPopup;
+    public InputField nickNameUI;
     void Awake () {
  
         // if (instance != null) {
@@ -37,6 +38,10 @@ public class PhotonManager : Photon.PunBehaviour {
         }
         
         // PhotonNetwork.automaticallySyncScene = true;
+    }
+
+    public void setNickName() {
+        PhotonNetwork.playerName = nickNameUI.text;
     }
 
     void Start () {
