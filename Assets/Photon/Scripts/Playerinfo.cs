@@ -11,7 +11,7 @@ public class Playerinfo : Photon.PunBehaviour {
 		if (!PhotonNetwork.isMasterClient) {
 
 		}
-		Debug.Log("p name = " + photonView.name );
+		// Debug.Log("p name = " + photonView.name );  // 게임오브젝트 이름 
 	}
 
 	[PunRPC]
@@ -24,6 +24,7 @@ public class Playerinfo : Photon.PunBehaviour {
 		Debug.Log("send RPC name ");
 
 		photonView.RPC("setname", PhotonTargets.All);
+
 	}
 	
 	

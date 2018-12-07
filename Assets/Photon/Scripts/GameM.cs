@@ -32,7 +32,7 @@ public class GameM : Photon.PunBehaviour {
 	// private GameObject userObj;
 	// private bool userEmpty = true;
 
-	
+	public InRoomRoundTimer inRoomRoundTimer;
 
 	private void Start()
 	{
@@ -147,7 +147,7 @@ public class GameM : Photon.PunBehaviour {
 
 			}
 		}
-	
+
 		
 	}
 
@@ -267,6 +267,10 @@ public class GameM : Photon.PunBehaviour {
 		
 	}
 
+	public void clickExitButotn() {
+		PhotonNetwork.LeaveRoom();
+	}
+
 	public void leaveRoomButton() {
 
 		PhotonNetwork.LeaveRoom();
@@ -294,9 +298,10 @@ public class GameM : Photon.PunBehaviour {
 		loadingPopUp.SetActive(false);
 		newUser = true;
 		user12name.text = newPlayer.NickName;
-
-		playerObj.GetComponent<Playerinfo>().masterName = masterName;
-		playerObj.GetComponent<Playerinfo>().sendName();
+		inRoomRoundTimer.joinUser = true;
+		inRoomRoundTimer.StartRoundNow();
+		// playerObj.GetComponent<Playerinfo>().masterName = masterName;
+		// playerObj.GetComponent<Playerinfo>().sendName();
 
 	}
 
