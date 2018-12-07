@@ -5,8 +5,8 @@ class Tank : TankController
 {
 	public void Start()
 	{
-		moveSpeed = 1;
-		rotateSpeed = 1;
+		moveSpeed = 5;
+		rotateSpeed = 5;
 		
 		
 	}
