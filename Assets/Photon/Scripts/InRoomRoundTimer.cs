@@ -27,9 +27,11 @@ public class InRoomRoundTimer : MonoBehaviour
     public Text timeUI1 , timeUI2;
     public bool joinUser = false;
     private bool user2 = false;
+    public GameM gameManager;
 
     public void StartRoundNow()
     {
+        Debug.Log("startRoundNow() call ");
         // in some cases, when you enter a room, the server time is not available immediately.
         // time should be 0.0f but to make sure we detect it correctly, check for a very low value.
         if (PhotonNetwork.time < 0.0001f)
@@ -51,6 +53,7 @@ public class InRoomRoundTimer : MonoBehaviour
     /// <summary>Called by PUN when this client entered a room (no matter if joined or created).</summary>
     public void OnJoinedRoom()
     {
+        
         if (PhotonNetwork.isMasterClient)
         {
           
@@ -58,15 +61,17 @@ public class InRoomRoundTimer : MonoBehaviour
         else
         {
             user2 = true;
-              this.StartRoundNow();
+            Debug.Log("start inroom");
+            this.StartRoundNow();
             // as the creator of the room sets the start time after entering the room, we may enter a room that has no timer started yet
-            Debug.Log("StartTime already set: " + PhotonNetwork.room.CustomProperties.ContainsKey(StartTimeKey));
+            // Debug.Log("StartTime already set: " + PhotonNetwork.room.CustomProperties.ContainsKey(StartTimeKey));
         }
     }
 
     /// <summary>Called by PUN when new properties for the room were set (by any client in the room).</summary>
     public void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
     {
+        Debug.Log(">OnPhotonCustomRoomPropertiesChanged");
         if (propertiesThatChanged.ContainsKey(StartTimeKey))
         {
             StartTime = (double)propertiesThatChanged[StartTimeKey];
@@ -80,6 +85,7 @@ public class InRoomRoundTimer : MonoBehaviour
     /// </remarks>
     public void OnMasterClientSwitched(PhotonPlayer newMasterClient)
     {
+        Debug.Log(">OnMasterClientSwitched");
         if (!PhotonNetwork.room.CustomProperties.ContainsKey(StartTimeKey))
         {
             Debug.Log("The new master starts a new round, cause we didn't start yet.");
@@ -87,30 +93,45 @@ public class InRoomRoundTimer : MonoBehaviour
         }
     }
 
-    string countTime;
+    private string countTime;
     private bool timeOver = true;
+    private double remainingTime;
     void Update()
     {
-        double elapsedTime = (PhotonNetwork.time - StartTime);
-        remainingTime = SecondsPerTurn - (elapsedTime % SecondsPerTurn);
-         
-        if ( joinUser && remainingTime < 0.02f ) {
-            Debug.Log(" join and time over ");
-            timeUI1.text = "time: 0.00 ";
-            timeUI2.text = "time: 0.00 ";
-            timeOver = false;
-            return;
-        }
-        if (user2) {
-            if (remainingTime < 0.02f) {
+        if (timeOver) {
+
+            double elapsedTime = (PhotonNetwork.time - StartTime);
+            remainingTime = SecondsPerTurn - (elapsedTime % SecondsPerTurn);
+            
+            if ( joinUser && remainingTime < 0.02f ) {
+
+                Debug.Log(" join and time over ");
                 timeUI1.text = "time: 0.00 ";
-                timeUI2.text = "time: 0.00 ";
                 timeOver = false;
+                gameManager.hideExitButton();
+
+                if (gameManager.readyP1 == false) {
+                    gameManager.randomPos();
+                    gameManager.hideButton();
+                }
                 return;
             }
-        }
+            if (user2) {
 
-        if (timeOver) {
+                if (remainingTime < 0.02f) {
+                    
+                    Debug.Log(" join and time over 2 ");
+                    timeUI2.text = "time: 0.00 ";
+                    timeOver = false;
+                    gameManager.hideExitButton();
+
+                    if (gameManager.readyP2 == false) {
+                        gameManager.randomPos();
+                        gameManager.hideButton();
+                    }
+                    return;
+                }
+            }
 
             if (startRoundWhenTimeIsSynced)
             {
@@ -124,29 +145,31 @@ public class InRoomRoundTimer : MonoBehaviour
         
     }
 
-    GUIStyle style = new GUIStyle();
-    double remainingTime;
-    public void OnGUI()
-    {
+    // GUIStyle style = new GUIStyle();
+    // public void OnGUI()
+    // {
 
-        style.fontSize = 40;
-        // alternatively to doing this calculation here:
-        // calculate these values in Update() and make them publicly available to all other scripts
-        // double elapsedTime = (PhotonNetwork.time - StartTime);
-        // remainingTime = SecondsPerTurn - (elapsedTime % SecondsPerTurn);
+    //     style.fontSize = 40;
+    //     // alternatively to doing this calculation here:
+    //     // calculate these values in Update() and make them publicly available to all other scripts
+    //     // double elapsedTime = (PhotonNetwork.time - StartTime);
+    //     // remainingTime = SecondsPerTurn - (elapsedTime % SecondsPerTurn);
        
-        // int turn = (int)(elapsedTime / SecondsPerTurn);
+    //     // int turn = (int)(elapsedTime / SecondsPerTurn);
 
 
-        // simple gui for output
-        GUILayout.BeginArea(TextPos);
-        // GUILayout.Label(string.Format("elapsed: {0:0.000}", elapsedTime), style);
-        // GUILayout.Label(string.Format("remaining: {0:0.000}", remainingTime), style);
-        // GUILayout.Label(string.Format("turn: {0:0}", turn) , style);
-        if (GUILayout.Button("new round" , style) )
-        {
-            this.StartRoundNow();
-        }
-        GUILayout.EndArea();
-    }
+    //     // simple gui for output
+    //     GUILayout.BeginArea(TextPos);
+    //     // GUILayout.Label(string.Format("elapsed: {0:0.000}", elapsedTime), style);
+    //     // GUILayout.Label(string.Format("remaining: {0:0.000}", remainingTime), style);
+    //     // GUILayout.Label(string.Format("turn: {0:0}", turn) , style);
+    //     if (GUILayout.Button("new round" , style) )
+    //     {
+    //         this.StartRoundNow();
+    //     }
+    //     GUILayout.EndArea();
+    // }
+
+
+
 }
