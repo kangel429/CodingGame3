@@ -224,9 +224,9 @@ public class GameM : Photon.PunBehaviour {
 	public void hideExitButton() {
 
 		if (masterUser) {
-			exitButton1.SetActive(true);
+			exitButton1.SetActive(false);
 		}else {
-			exitButton2.SetActive(true);
+			exitButton2.SetActive(false);
 		}
 
 	}

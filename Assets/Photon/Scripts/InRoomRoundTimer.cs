@@ -103,7 +103,7 @@ public class InRoomRoundTimer : MonoBehaviour
             double elapsedTime = (PhotonNetwork.time - StartTime);
             remainingTime = SecondsPerTurn - (elapsedTime % SecondsPerTurn);
             
-            if ( joinUser && remainingTime < 0.02f ) {
+            if ( joinUser && (remainingTime < 0.02f) ) {
 
                 Debug.Log(" join and time over ");
                 timeUI1.text = "time: 0.00 ";
