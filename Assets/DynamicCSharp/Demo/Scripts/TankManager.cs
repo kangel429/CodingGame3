@@ -29,9 +29,21 @@ namespace DynamicCSharp.Demo
         public Sprite playBuSprite;
         public Image buttonPlayimg;
 
+        public bool stopScript;
+
 
         CtrManagerObject ctrManagerObject;
-        
+
+        public GameObject stopObject;
+
+        public void StopScriptButton(){
+            stopObject.SetActive(true);
+            stopObject.transform.position = tankObject.transform.position;
+            Debug.Log("dlwp1111111111");
+            //stopScript = !stopScript;
+            //crash = !crash;
+        }
+
 
         // Methods
         /// <summary>
@@ -42,8 +54,9 @@ namespace DynamicCSharp.Demo
             GameObject.Find("ErrorShowLine").GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 30;
+            stopObject.SetActive(false);
             //ctrManagerObject = tankObject.GetComponent<CtrManagerObject>();
-        //if(ScriptDomain.Active== null){
+            //if(ScriptDomain.Active== null){
 
             //    Debug.Log("333333333333");
             //}
@@ -146,7 +159,8 @@ namespace DynamicCSharp.Demo
                 proxy.Fields["buttonPlayimg"] = buttonPlayimg;
                 proxy.Fields["bulletObject"] = bulletObject;
                 proxy.Fields["nextStage"] = nextStage;
-                // Call the run tank method
+                // Call the run tank method   crash
+                //proxy.Fields["crash"] = crash;
                 proxy.Call("RunTank");
             }
             else
@@ -157,7 +171,7 @@ namespace DynamicCSharp.Demo
 
             }
         }
-
+        bool crash = false;
         /// <summary>
         /// Resets the tank at its starting location.
         /// </summary>

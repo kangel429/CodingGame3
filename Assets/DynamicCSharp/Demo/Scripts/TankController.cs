@@ -34,7 +34,7 @@ namespace DynamicCSharp.Demo
     {
         // Private
         private Queue<TankEvent> tankTasks = new Queue<TankEvent>();
-        private bool crash = false;
+        public bool crash = false;
 
         // Public        
         /// <summary>
@@ -58,6 +58,8 @@ namespace DynamicCSharp.Demo
         public string nextStage;
 
         public Vector3 tank;
+
+        public int stopAction = 1;
 
         bool crashEnemy = false;
         //public Vector3 tank
@@ -203,7 +205,8 @@ namespace DynamicCSharp.Demo
                 // Check for a crash
                 if(crash == true)
                 {
-                    Debug.Log("Crashed!");
+                    Debug.Log("Crashed!"); 
+
                     tankTasks.Clear();
                     buttonPlayimg.sprite = playBuSprite;
                     yield break;
@@ -251,7 +254,7 @@ namespace DynamicCSharp.Demo
         private IEnumerator MoveRoutine(float amount)
         {
             // Get the target position
-            Vector2 destination = transform.localPosition + (transform.up * amount);
+            Vector2 destination = transform.localPosition + (transform.up * amount) * stopAction;
             
             // Loop until we reach our target
             while(Vector2.Distance(transform.localPosition, destination) > 0f)
@@ -270,7 +273,7 @@ namespace DynamicCSharp.Demo
         private IEnumerator HorizontalMoveRoutine(float amount)
         {
             // Get the target position
-            Vector2 destination = transform.localPosition + (transform.right * amount);
+            Vector2 destination = transform.localPosition + (transform.right * amount) * stopAction;
 
             // Loop until we reach our target
             while (Vector2.Distance(transform.localPosition, destination) > 0f)
@@ -290,7 +293,7 @@ namespace DynamicCSharp.Demo
         private IEnumerator RotateRoutine(float amount)
         {
             // Get the target rotation
-            Quaternion target = Quaternion.Euler(0, 0, transform.eulerAngles.z - amount);
+            Quaternion target = Quaternion.Euler(0, 0, transform.eulerAngles.z - (amount* stopAction));
 
             // Loop until we rotate to our target
             while(transform.rotation != target)
@@ -316,20 +319,22 @@ namespace DynamicCSharp.Demo
 
         private IEnumerator ShootRoutine(float vv)
         {
-            Vector2 startPos = transform.position+ new Vector3(vv,0,0) + (transform.up * 0.8f);
+            Vector2 startPos = transform.position+ new Vector3(vv,0,0) + (transform.up * 0.8f) * stopAction;
 
-            // Fire a shell
-            TankShell shell = TankShell.Shoot(bulletObject, startPos, transform.up);
+            if(stopAction!=0){
+                // Fire a shell
+                TankShell shell = TankShell.Shoot(bulletObject, startPos, transform.up);
 
-            // Wait for the shell to be destroyed
-            while(shell.Step() == false)
-            {
-                // Wait for next frame
-                yield return null;
+                // Wait for the shell to be destroyed
+                while (shell.Step() == false)
+                {
+                    // Wait for next frame
+                    yield return null;
+                }
+
+                // Destroy the shell
+                shell.Destroy();
             }
-
-            // Destroy the shell
-            shell.Destroy();
         }
 
     }
