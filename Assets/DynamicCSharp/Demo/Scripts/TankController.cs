@@ -62,6 +62,8 @@ namespace DynamicCSharp.Demo
         public int stopAction = 1;
 
         bool crashEnemy = false;
+
+        int processValue;
         //public Vector3 tank
         //{
         //    get
@@ -199,13 +201,15 @@ namespace DynamicCSharp.Demo
             //transform.position = Vector2.MoveTowards(transform.position, tank, 2);
 
             // Process all tank tasks in order
+     
 
             while (tankTasks.Count > 0)
             {
+                Debug.Log("dddd" + tankTasks.Count);
                 // Check for a crash
                 if(crash == true)
                 {
-                    Debug.Log("Crashed!"); 
+                    Debug.Log("Crashed!");
 
                     tankTasks.Clear();
                     buttonPlayimg.sprite = playBuSprite;
@@ -299,8 +303,12 @@ namespace DynamicCSharp.Demo
             while(transform.rotation != target)
             {
                 // Check for a crash
-                if (crash == true)
+                if (crash == true){
+
                     yield break;
+
+                }
+                    
 
                 // Find the angle delta
                 float delta = Mathf.Abs(transform.eulerAngles.z - target.eulerAngles.z);
