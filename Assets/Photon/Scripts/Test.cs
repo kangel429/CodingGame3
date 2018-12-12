@@ -39,6 +39,11 @@ while(_pauseEvent.WaitOne())
 	i++;
 	Thread.Sleep(1000);
 
+	for (int j=0; j<100; j++) {
+		Debug.Log(" i + j = " + i + " + " + j );
+		Thread.Sleep(500);
+	}
+
 }
 }
 

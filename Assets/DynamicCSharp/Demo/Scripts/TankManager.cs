@@ -40,6 +40,7 @@ namespace DynamicCSharp.Demo
             stopObject.SetActive(true);
             stopObject.transform.position = tankObject.transform.position;
             Debug.Log("dlwp1111111111");
+            proxy.Call("clickPause");
             //stopScript = !stopScript;
             //crash = !crash;
         }
@@ -107,7 +108,7 @@ namespace DynamicCSharp.Demo
 
         }
 
-
+        ScriptProxy proxy;
         /// <summary>
         /// Resets the demo game and runs the tank with the specified C# code controlling it.
         /// </summary>
@@ -145,7 +146,7 @@ namespace DynamicCSharp.Demo
             {
 
                 // Attach the component to the object
-                ScriptProxy proxy = type.CreateInstance(tankObject);
+                 proxy = type.CreateInstance(tankObject);
 
                 // Check for error
                 if(proxy == null)
@@ -170,6 +171,14 @@ namespace DynamicCSharp.Demo
                 //}
 
             }
+        }
+
+        public void replay() {
+            stopObject.SetActive(false);
+            proxy.Call("crashFalse");
+            proxy.Call("pauseButton");
+            proxy.Call("RunTank");
+            
         }
         bool crash = false;
         /// <summary>
