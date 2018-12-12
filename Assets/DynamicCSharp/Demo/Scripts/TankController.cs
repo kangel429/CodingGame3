@@ -62,6 +62,12 @@ namespace DynamicCSharp.Demo
         public int stopAction = 1;
 
         bool crashEnemy = false;
+
+        public bool pause;
+        public bool crash2;
+
+        private string crashFuncName;
+        private Vector2 crashV2;
         //public Vector3 tank
         //{
         //    get
@@ -113,6 +119,23 @@ namespace DynamicCSharp.Demo
         {
             // Start the routine
             StartCoroutine(RunTankRoutine());
+        }
+
+        public void crashFalse() {
+            crash = false;
+            Debug.Log("task count = " + tankTasks.Count ); 
+            if(crash == false ) {
+                Debug.Log(" crash false ");
+            }
+        }
+
+        public void pauseButton() {
+            pause = true;
+            crash2 = true;
+        }
+
+        public void clickPause() {
+            crash2 = false;
         }
 
         public bool TellCrash()
@@ -178,10 +201,20 @@ namespace DynamicCSharp.Demo
         private IEnumerator RunTankRoutine()
         {
             // Call the main method
-            TankMain();
+            if (pause == false ) {
+                TankMain();
+            }
+
+            // if (crash2) {
+            //     if (crashFuncName != "") {
+            //         StartCoroutine(crashFuncName);
+            //     }
+                
+            // }
+            
             Debug.Log("Ddddddd" + tank);
 
-
+            Debug.Log("task count = " + tankTasks.Count ); 
             if(tank.y != yy)
             {
                 yield return StartCoroutine(MoveRoutine(tank.y));
@@ -202,12 +235,13 @@ namespace DynamicCSharp.Demo
 
             while (tankTasks.Count > 0)
             {
+
                 // Check for a crash
                 if(crash == true)
                 {
                     Debug.Log("Crashed!"); 
 
-                    tankTasks.Clear();
+                    // tankTasks.Clear();
                     buttonPlayimg.sprite = playBuSprite;
                     yield break;
                 }
@@ -251,6 +285,20 @@ namespace DynamicCSharp.Demo
 
         }
 
+        public IEnumerator MoveRoutine2() {
+            Vector2 v2 = crashV2;
+            while(Vector2.Distance(transform.localPosition, v2) > 0f)
+            {
+                // Check for a crash
+
+                // Move towards the target
+                transform.localPosition = Vector2.MoveTowards(transform.localPosition, v2, Time.deltaTime * moveSpeed);
+
+                // Wait for next frame
+                yield return null;
+            }
+        }
+
         private IEnumerator MoveRoutine(float amount)
         {
             // Get the target position
@@ -261,6 +309,7 @@ namespace DynamicCSharp.Demo
             {
                 // Check for a crash
                 if (crash == true)
+                    
                     yield break;
 
                 // Move towards the target
